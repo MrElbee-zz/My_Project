@@ -28,8 +28,31 @@ def definition(word):
 
 		if (action.lower() == "y") or (action.lower() == "yes"):
 			return data[gcmatch(word, data.keys())[0]]
+		# If user know what want	
 		elif (action.lower() == "n") or (action.lower() == "no"):
-			return ("The word does not exist in dictionary")
+
+			action = input("The word does not exist in dictionary. Do you want to add word %s in dictionary? [y/n]: " % user_word)
+			
+			# Add new word and definition in json file
+			if (action.lower() == "y") or (action.lower() == "yes"):
+				definition_new_word = input("What that word mean? : ")
+
+				with open('data.json', 'w') as f:
+
+					# Add word in variadle 
+					data[user_word] = [definition_new_word]
+					
+					# Rewrite file
+					f.write(json.dumps(data))
+
+
+				return data[user_word]
+
+			# In any incomprehensible situation, I apologize.
+			elif (action.lower() == "n") or (action.lower() == "no"):
+				return ("Sorry! I don't know that word")
+			else:
+				return ("Sorry! I don't understand you")
 		else:
 			return ("Sorry! I don't understand you")
 			
