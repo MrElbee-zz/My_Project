@@ -14,7 +14,14 @@ import requests
 zs = int(input("What zoom map you need: "))
 #tiles='Stamen Terrain',
 # Base map
-map = folium.Map(location=[48.423674, 35.010475], zoom_start = zs, tiles="CartoDB dark_matter")
+locat1 = input("First number location you need: ")
+
+locat2 = input("Second number location you need: ")
+
+print (float(locat1), float(locat2))
+
+
+map = folium.Map(location=[float(locat1), float(locat2)], zoom_start = zs)
 
 #Create Cluster
 marker_cluster = MarkerCluster().add_to(map)
@@ -22,7 +29,7 @@ marker_cluster = MarkerCluster().add_to(map)
 #marker_cluster = folium.plugins.marker_cluster.MarkerCluster().add_to(map)
 
 #list coordinates
-place = [[48.423674, 35.010475],[48.4559428,35.0572981]]
+place = [[48.423674, 35.010475],[48.4559428,35.0572981],[locat1,locat2]]
 
 # Load data
 data = pd.read_csv("Volcanoes_USA.txt")
